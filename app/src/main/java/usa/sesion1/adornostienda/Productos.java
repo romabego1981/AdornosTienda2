@@ -17,7 +17,7 @@ public class Productos extends AppCompatActivity {
     LinearLayout linearProductos;
     LinearLayout linearHorizontal;
     LinearLayout linearVerticalInterno;
-    LinearLayout linearVerticalUltimo;
+    LinearLayout linearHorizontalUltimo;
     ArrayList<Producto> carrito;
     ArrayList<Producto> catalogo;
     Intent pantallaCarrito;
@@ -71,36 +71,38 @@ public class Productos extends AppCompatActivity {
             linearHorizontal.addView(btnAnadir);
 
             linearProductos.addView(linearHorizontal);
-            Toast.makeText(getApplicationContext(), " "+producto.getNombre()+" - "+producto.getPrecio(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), " "+producto.getNombre()+" - "+producto.getPrecio(), Toast.LENGTH_LONG).show();
             btnAnadir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(!buscarProducto(carrito,producto)){
                         carrito.add(producto);
                         String msg="Se añadió el producto " + producto.getNombre();
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     }else{
                         aumentarProductoEnCarrito(carrito,producto);
                         String msg="Se añadió el producto " + producto.getNombre();
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     }
 
                 }
             });
         }
-        linearVerticalUltimo = new LinearLayout(this);
-        linearVerticalUltimo.setLayoutParams(new LinearLayout.LayoutParams(0,wrapContent,1));
-        linearVerticalUltimo.setOrientation(LinearLayout.HORIZONTAL);
+        linearHorizontalUltimo = new LinearLayout(this);
+        linearHorizontalUltimo.setLayoutParams(new LinearLayout.LayoutParams(matchParent,wrapContent));
+        linearHorizontalUltimo.setOrientation(LinearLayout.HORIZONTAL);
+
         Button btnVerCarrito = new Button(this);
         btnVerCarrito.setText("Ver Carrito");
         btnVerCarrito.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
-        linearVerticalUltimo.addView(btnVerCarrito);
-        linearHorizontal.addView(linearVerticalUltimo);
+        linearHorizontalUltimo.addView(btnVerCarrito);
+        //linearHorizontal.addView(linearHorizontalUltimo);
+        linearProductos.addView(linearHorizontalUltimo);
         //linearProductos.addView(linearHorizontal);
         btnVerCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Ingresa a Ver Carrito..."+carrito.size(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Ingresa a Ver Carrito..."+carrito.size(),Toast.LENGTH_LONG).show();
                 pantallaCarrito = new Intent(getApplicationContext(), ProductoActividad.class);
                 pantallaCarrito.putExtra("carrito",carrito);
                 startActivity(pantallaCarrito);
@@ -123,5 +125,4 @@ public class Productos extends AppCompatActivity {
             carrito.get(i).setCantidad(cantidadActual+1);
         }
     }
-
 }
