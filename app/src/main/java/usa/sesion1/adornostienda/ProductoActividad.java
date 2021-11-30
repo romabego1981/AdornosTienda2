@@ -18,6 +18,12 @@ public class ProductoActividad extends AppCompatActivity {
     LinearLayout linearPadre;
     LinearLayout linearHorizontal;
     LinearLayout linearVerticalInterno;
+    LinearLayout linearHorizontalUltimo;
+    int costoTotal;
+    int aux1;
+    int aux2;
+    String cant1;
+    String precio1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +33,15 @@ public class ProductoActividad extends AppCompatActivity {
         int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
         int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
         linearPadre = findViewById(R.id.listacarrito);
-        //TextView txtNombre1 = new TextView(this);
-        //txtNombre1.setText("Cantidad de productos en el Carrito --> ");
-        //linearPadre.addView(txtNombre1);
+        int costoTotal;
+
 
         Intent carritoRecibido = getIntent();
         ArrayList<Producto> carritoDeCompras = (ArrayList<Producto>)carritoRecibido.getSerializableExtra("carrito");
-        Toast.makeText(getApplicationContext(),"Cantidad de productos en el Carrito --> "+carritoDeCompras.size(),Toast.LENGTH_LONG).show();
-        //TextView txtNombre = new TextView(this);
-        //txtNombre.setText(carritoDeCompras.get(0).getNombre());
-        //linearPadre.addView(txtNombre);
-        int cont = 0;
+        //Toast.makeText(getApplicationContext(),"Cantidad de productos en el Carrito --> "+carritoDeCompras.size(),Toast.LENGTH_LONG).show();
 
+        costoTotal=0;
         for (Producto p: carritoDeCompras){
-            Toast.makeText(getApplicationContext(),"Contador --> "+cont,Toast.LENGTH_LONG).show();
             linearHorizontal = new LinearLayout(this);
             linearHorizontal.setOrientation(LinearLayout.HORIZONTAL);
             linearHorizontal.setLayoutParams(new LinearLayout.LayoutParams(matchParent,wrapContent));
@@ -54,45 +55,88 @@ public class ProductoActividad extends AppCompatActivity {
             linearVerticalInterno.setOrientation(LinearLayout.VERTICAL);
             TextView txtNombre = new TextView(this);
             txtNombre.setText(p.getNombre());
-            txtNombre.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
+            txtNombre.setLayoutParams(new LinearLayout.LayoutParams(wrapContent,wrapContent));
             TextView txtPrecio = new TextView(this);
             txtPrecio.setText(" "+p.getPrecio());
-            txtPrecio.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
+            txtPrecio.setLayoutParams(new LinearLayout.LayoutParams(wrapContent,wrapContent));
             linearVerticalInterno.addView(txtNombre);
             linearVerticalInterno.addView(txtPrecio);
 
             TextView txtCant = new TextView(this);
             txtCant.setText(" "+p.getCantidad());
             txtCant.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
+            cant1=txtCant.getText().toString();
+            precio1=txtPrecio.getText().toString();
+            //aux1 = Integer.parseInt(cant1);
+            //aux2 = Integer.decode(txtPrecio.getText().toString());
+            //costoTotal = costoTotal + (Integer.parseInt(txtCant.getText().toString())*Integer.parseInt(txtPrecio.getText().toString()));
 
-            Button btnEliminar = new Button(this);
-            btnEliminar.setText("Eliminar");
-            btnEliminar.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
+
+            //costoTotal = Integer.parseInt(cant1);
+            Button btnMas = new Button(this);
+            btnMas.setText("+");
+            btnMas.setLayoutParams(new LinearLayout.LayoutParams(20,wrapContent,1));
+            Button btnMenos = new Button(this);
+            btnMenos.setText("-");
+            btnMenos.setLayoutParams(new LinearLayout.LayoutParams(20,wrapContent,1));
 
             linearHorizontal.addView(imagen);
             linearHorizontal.addView(linearVerticalInterno);
             linearHorizontal.addView(txtCant);
-            linearHorizontal.addView(btnEliminar);
+            linearHorizontal.addView(btnMas);
+            linearHorizontal.addView(btnMenos);
 
             linearPadre.addView(linearHorizontal);
-            cont++;
-        }
-         /*
-        for (Producto p: carritoDeCompras){
-            TextView txtNombre = new TextView(this);
-            txtNombre.setText(p.getNombre());
-            txtNombre.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
-            TextView txtPrecio = new TextView(this);
-            txtPrecio.setText(" "+p.getCantidad());
-            txtPrecio.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
-            linearVerticalInterno = new LinearLayout(this);
-            linearVerticalInterno.setLayoutParams(new LinearLayout.LayoutParams(0,wrapContent,1));
-            linearVerticalInterno.setOrientation(LinearLayout.VERTICAL);
-            linearVerticalInterno.addView(txtNombre);
-            linearVerticalInterno.addView(txtPrecio);
-            linearPadre.addView(linearVerticalInterno);
-        }
-        */
 
+            btnMas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    aumentaProductoEnCarrito(p);
+                    //String msg="Se añadió el producto " + p.getNombre();
+                    //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    txtCant.setText(" "+p.getCantidad());
+                }
+            });
+            btnMenos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    disminuyeProductoEnCarrito(p);
+                    String msg="Se quitó el producto " + p.getNombre();
+                    //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    txtCant.setText(" "+p.getCantidad());
+                }
+            });
+        }
+
+        linearHorizontalUltimo = new LinearLayout(this);
+        linearHorizontalUltimo.setLayoutParams(new LinearLayout.LayoutParams(matchParent,wrapContent));
+        linearHorizontalUltimo.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView txtTotal = new TextView(this);
+        txtTotal.setText(" "+precio1);
+        txtTotal.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
+
+        Button btnVerCarrito = new Button(this);
+        btnVerCarrito.setText("Ver Carrito");
+        btnVerCarrito.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
+
+        linearHorizontalUltimo.addView(txtTotal);
+        linearHorizontalUltimo.addView(btnVerCarrito);
+        //linearHorizontal.addView(linearHorizontalUltimo);
+        linearPadre.addView(linearHorizontalUltimo);
+        //linearProductos.addView(linearHorizontal);
+
+    }
+
+    private void aumentaProductoEnCarrito(Producto producto){
+        int cantidadActual = producto.getCantidad();
+        producto.setCantidad(cantidadActual+1);
+        //costoTotal = costoTotal + producto.getPrecio();
+    }
+
+    private void disminuyeProductoEnCarrito(Producto producto){
+        int cantidadActual = producto.getCantidad();
+        producto.setCantidad(cantidadActual-1);
+        //costoTotal = costoTotal - producto.getPrecio();
     }
 }
