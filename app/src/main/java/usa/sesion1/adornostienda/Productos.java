@@ -38,10 +38,10 @@ public class Productos extends AppCompatActivity {
         int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
         int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
         catalogo = new ArrayList<>();
-        catalogo.add(new Producto(1, "Adorno Corazón dorado", R.drawable.adorno1,120000));
-        catalogo.add(new Producto(2, "Adorno Estrella mpultiple", R.drawable.adorno2,45000));
-        catalogo.add(new Producto(3, "Adorno Navideño elegante", R.drawable.adorno3,37000));
-        catalogo.add(new Producto(4, "Adorno corona navideña", R.drawable.adorno4,80000));
+        catalogo.add(new Producto(1, "Arbol de navidad", R.drawable.arbol_navidad,120000));
+        catalogo.add(new Producto(2, "Estrella múltiple", R.drawable.estrella,45000));
+        catalogo.add(new Producto(3, "Esfera decorada", R.drawable.esfera_decorada,37000));
+        catalogo.add(new Producto(4, "Corona navideña", R.drawable.corona,80000));
         for (Producto producto:catalogo){
             linearHorizontal = new LinearLayout(this);
             linearHorizontal.setOrientation(LinearLayout.HORIZONTAL);
