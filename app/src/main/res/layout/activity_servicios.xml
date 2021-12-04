@@ -42,7 +42,8 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Servicio de bisuteria. Puede solicitarlo para sus trabajos especiales" />
+                    android:text="Servicio de bisuteria. " />
+                    //Puede solicitarlo para sus trabajos especiales Esto iría en +info
 
             </LinearLayout>
 
@@ -79,8 +80,8 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Servicio de decoración de árboles de navidad con el motivo que elija" />
-
+                    android:text="Decoración de árboles de navidad" />
+                    //En +info podemos poner opciones de decoracion, solo luces, luces y adornos, luces y cintas
             </LinearLayout>
 
             <Button
@@ -116,8 +117,8 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Decoramos sus fiestas con el motivo que nos pida" />
-
+                    android:text="Decoración de fiestas" />
+                    //En +info podemos poner opciones Halloween, Navidad, Cumpleaños, Despedidas
             </LinearLayout>
 
             <Button
@@ -153,7 +154,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Decoramos la fiesta de quince para sus hijas." />
+                    android:text="Decoración fiesta 15 años" />
 
             </LinearLayout>
 
