@@ -1,7 +1,12 @@
 package usa.sesion1.adornostienda;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 public class Productos extends AppCompatActivity {
 
@@ -37,11 +43,17 @@ public class Productos extends AppCompatActivity {
         linearProductos = (LinearLayout) findViewById(R.id.linearProductos);
         int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
         int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        /*
         catalogo = new ArrayList<>();
         catalogo.add(new Producto(1, "Adorno Corazón dorado", R.drawable.adorno1,120000));
         catalogo.add(new Producto(2, "Adorno Estrella mpultiple", R.drawable.adorno2,45000));
         catalogo.add(new Producto(3, "Adorno Navideño elegante", R.drawable.adorno3,37000));
         catalogo.add(new Producto(4, "Adorno corona navideña", R.drawable.adorno4,80000));
+        */
+
+        ArrayList<Producto> catalogo = consultarProductos(getApplicationContext());
+
         for (Producto producto:catalogo){
             linearHorizontal = new LinearLayout(this);
             linearHorizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -111,6 +123,7 @@ public class Productos extends AppCompatActivity {
     }
 
     private boolean buscarProducto(ArrayList<Producto> productos, Producto producto){
+        Toast.makeText(getApplicationContext(), "Entra en buscarProducto()", Toast.LENGTH_SHORT).show();
         for(Producto p: productos){
             if(producto.getId() == p.getId()){
                 return true;
@@ -125,4 +138,27 @@ public class Productos extends AppCompatActivity {
             carrito.get(i).setCantidad(cantidadActual+1);
         }
     }
+
+    public ArrayList<Producto> consultarProductos (Context context){
+        ArrayList<Producto> productos = new ArrayList<>();
+
+        MyOpenHelper dataBase = new MyOpenHelper(this);
+        SQLiteDatabase db = dataBase.getReadableDatabase();
+
+        Cursor c = dataBase.leerProductos(db);
+
+        Toast.makeText(getApplicationContext(), "Entra al cursor"+c.getCount(), Toast.LENGTH_SHORT).show();
+
+        while (c.moveToNext()){
+            @SuppressLint("Range") int id = c.getInt(c.getColumnIndex("id"));
+            @SuppressLint("Range") String nombre = c.getString(c.getColumnIndex("nombre"));
+            @SuppressLint("Range") int precio = c.getInt(c.getColumnIndex("precio"));
+            @SuppressLint("Range") int imagen = c.getInt(c.getColumnIndex("imagen"));
+            //@SuppressLint("Range") int cantidad = c.getInt(c.getColumnIndex("cantidad"));
+
+            productos.add(new Producto(id, nombre, precio, imagen));
+        }
+        return productos;
+    }
+
 }

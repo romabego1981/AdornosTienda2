@@ -3,8 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/opcProductos"
-        android:title="Productos" />
+        android:id="@+id/opcGestionarProductos"
+        android:title="Administrar Productos" />
+    <item
+        android:id="@+id/opcComprarProductos"
+        android:title="Comprar Productos" />
     <item
         android:id="@+id/opcServicios"
         android:title="Servicios" />

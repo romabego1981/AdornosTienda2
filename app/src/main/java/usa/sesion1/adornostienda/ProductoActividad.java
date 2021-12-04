@@ -35,7 +35,6 @@ public class ProductoActividad extends AppCompatActivity {
         linearPadre = findViewById(R.id.listacarrito);
         int costoTotal;
 
-
         Intent carritoRecibido = getIntent();
         ArrayList<Producto> carritoDeCompras = (ArrayList<Producto>)carritoRecibido.getSerializableExtra("carrito");
         //Toast.makeText(getApplicationContext(),"Cantidad de productos en el Carrito --> "+carritoDeCompras.size(),Toast.LENGTH_LONG).show();
@@ -65,14 +64,21 @@ public class ProductoActividad extends AppCompatActivity {
             TextView txtCant = new TextView(this);
             txtCant.setText(" "+p.getCantidad());
             txtCant.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
-            cant1=txtCant.getText().toString();
-            precio1=txtPrecio.getText().toString();
-            //aux1 = Integer.parseInt(cant1);
-            //aux2 = Integer.decode(txtPrecio.getText().toString());
-            //costoTotal = costoTotal + (Integer.parseInt(txtCant.getText().toString())*Integer.parseInt(txtPrecio.getText().toString()));
 
+            try {
+                cant1=txtCant.getText().toString();
+                precio1=txtPrecio.getText().toString();
+                //aux1 = Integer.parseInt(cant1);
+                //aux2 = Integer.decode(txtPrecio.getText().toString());
+                costoTotal = costoTotal + (Integer.parseInt(txtCant.getText().toString())*Integer.parseInt(txtPrecio.getText().toString()));
+                precio1=" "+costoTotal;
+                //costoTotal = Integer.parseInt(cant1);
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                precio1="error";
+            }
 
-            //costoTotal = Integer.parseInt(cant1);
             Button btnMas = new Button(this);
             btnMas.setText("+");
             btnMas.setLayoutParams(new LinearLayout.LayoutParams(20,wrapContent,1));

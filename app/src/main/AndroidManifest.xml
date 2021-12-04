@@ -22,6 +22,9 @@
             android:name=".Servicios"
             android:exported="false" />
         <activity
+            android:name=".GestionaProductos"
+            android:exported="false" />
+        <activity
             android:name=".Productos"
             android:exported="false" />
         <activity

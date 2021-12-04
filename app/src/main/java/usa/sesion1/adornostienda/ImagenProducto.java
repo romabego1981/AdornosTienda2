@@ -1,26 +1,20 @@
 package usa.sesion1.adornostienda;
 
-public class Producto {
+public class ImagenProducto {
 
     private int id;
     private String nombre;
-    private int precio;
     private int imagen;
-    private int cantidad;
 
-    public Producto(int id, String nombre, int precio, int imagen) {
+    public ImagenProducto(int id, String nombre, int imagen) {
         this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
         this.imagen = imagen;
-        this.cantidad = 1;
     }
 
-    public Producto(String nombre, int precio, int imagen) {
+    public ImagenProducto(String nombre, int imagen) {
         this.nombre = nombre;
-        this.precio = precio;
         this.imagen = imagen;
-        this.cantidad = 1;
     }
 
     public int getId() {
@@ -39,14 +33,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
     public int getImagen() {
         return imagen;
     }
@@ -54,12 +40,5 @@ public class Producto {
     public void setImagen(int imagen) {
         this.imagen = imagen;
     }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 }
+
