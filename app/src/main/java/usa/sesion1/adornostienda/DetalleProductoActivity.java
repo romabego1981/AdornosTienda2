@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetalleProductoActivity extends AppCompatActivity {
@@ -67,7 +66,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
             Log.e("TAG_Wilson", "Se ha actualizado el producto");
             Toast.makeText(this, "Se ha actualizado el producto", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(DetalleProductoActivity.this, MainActivity.class);
+            Intent intent = new Intent(DetalleProductoActivity.this, Principal.class);
             startActivity(intent);
 
         }catch (Exception e){
@@ -88,7 +87,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
             Log.e("TAG_Wilson", "Se ha borrado el producto");
             Toast.makeText(this, "Se ha borrado el producto", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(DetalleProductoActivity.this, MainActivity.class);
+            Intent intent = new Intent(DetalleProductoActivity.this, Principal.class);
             startActivity(intent);
 
         }catch (Exception e){
