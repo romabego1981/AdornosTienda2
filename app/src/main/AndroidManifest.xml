@@ -25,6 +25,9 @@
             android:name=".GestionaProductos"
             android:exported="false" />
         <activity
+            android:name=".DetalleProductoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Productos"
             android:exported="false" />
         <activity
