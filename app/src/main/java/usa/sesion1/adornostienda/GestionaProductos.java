@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -26,10 +29,13 @@ public class GestionaProductos extends AppCompatActivity {
     Spinner spnImagenes;
     Button btnGuardar;
     ListView lvwProductos;
+    private LinearLayout linearPadre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        linearPadre = (LinearLayout) findViewById(R.id.linearGestionarProductos);
+
         setContentView(R.layout.activity_gestionar_productos);
         Toast.makeText(getApplicationContext(),"desde gestiona Productos",Toast.LENGTH_LONG).show();
         edtNombre = (EditText)findViewById(R.id.edtNombre);
@@ -56,11 +62,13 @@ public class GestionaProductos extends AppCompatActivity {
         AdaptadorProductos adapter = new AdaptadorProductos(getApplicationContext(), misProductos);
         lvwProductos.setAdapter(adapter);
 
+        //edtNombre.setText(spnImagenes.getCount());
+
         lvwProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
                 Producto p = (Producto) adapterView.getItemAtPosition(posicion);
-
+                Toast.makeText(getApplicationContext(), "Dio clic en ...", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(GestionaProductos.this, DetalleProductoActivity.class);
                 intent.putExtra("id", p.getId());
                 intent.putExtra("nombre", p.getNombre());
@@ -101,6 +109,9 @@ public class GestionaProductos extends AppCompatActivity {
             dataBase.insertarProducto(nombre, precio, imagen, db);
             Log.e("TAG_Wilson", "Se ha guardado el productoxxxxxx");
             Toast.makeText(this, "Se ha guardado el productoxxxxxx", Toast.LENGTH_LONG).show();
+            Snackbar mySnackbar = Snackbar.make(linearPadre, "Usted ha guardado un adorno", Snackbar.LENGTH_LONG);
+            mySnackbar.setAction("DESHACER", new MyActionDeshacer());
+            mySnackbar.show();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -128,5 +139,12 @@ public class GestionaProductos extends AppCompatActivity {
             productos.add(new Producto(id, nombre, precio, imagen));
         }
         return productos;
+    }
+
+    private class MyActionDeshacer implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getApplicationContext(), "Se han revertido los cambios", Toast.LENGTH_LONG).show();
+        }
     }
 }
