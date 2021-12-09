@@ -2,8 +2,17 @@ package usa.sesion1.adornostienda;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProductoActividad extends AppCompatActivity {
@@ -24,6 +34,7 @@ public class ProductoActividad extends AppCompatActivity {
     int aux2;
     String cant1;
     String precio1;
+    ArrayList<Producto> carritoRecibido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +46,18 @@ public class ProductoActividad extends AppCompatActivity {
         linearPadre = findViewById(R.id.listacarrito);
         int costoTotal;
 
-        Intent carritoRecibido = getIntent();
-        ArrayList<Producto> carritoDeCompras = (ArrayList<Producto>)carritoRecibido.getSerializableExtra("carrito");
+        ArrayList<Producto> carritoDeCompras = new ArrayList<>();// = consultarProductos(getApplicationContext());
+        int cantRecibida = getIntent().getExtras().getInt("cantProd");
+        //Log.e("TAG_ERROR", "Mensaje G6: " + "carritoDeCompras..."+carritoDeCompras.size());
+        Log.e("TAG_ERROR", "Mensaje G6: " + "cantidadRecibida..."+cantRecibida);
+        //int n = cantRecibida.getIntExtra("cantProd",0);
+        for(int i=0; i<cantRecibida; i++){
+            int id = getIntent().getExtras().getInt("id"+i);
+            int cant = getIntent().getExtras().getInt("cantidad"+i);
+            Log.e("TAG_ERROR", "id"+i + "--" + "cantidad"+i);
+            carritoDeCompras.add(consultarProductos(id));
+        }
+        //ArrayList<Producto> carritoDeCompras = (ArrayList<Producto>)carritoRecibido.getSerializableExtra("carrito");
         //Toast.makeText(getApplicationContext(),"Cantidad de productos en el Carrito --> "+carritoDeCompras.size(),Toast.LENGTH_LONG).show();
 
         costoTotal=0;
@@ -65,6 +86,7 @@ public class ProductoActividad extends AppCompatActivity {
             txtCant.setText(" "+p.getCantidad());
             txtCant.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
 
+
             try {
                 cant1=txtCant.getText().toString();
                 precio1=txtPrecio.getText().toString();
@@ -76,7 +98,7 @@ public class ProductoActividad extends AppCompatActivity {
             }catch (Exception e){
                 e.printStackTrace();
             }finally {
-                precio1="error";
+                precio1="";
             }
 
             Button btnMas = new Button(this);
@@ -114,6 +136,10 @@ public class ProductoActividad extends AppCompatActivity {
             });
         }
 
+        for (Producto p: carritoDeCompras){
+            Toast.makeText(getApplicationContext(), "Entra al for a calcular el COSTOTOTAL", Toast.LENGTH_LONG).show();
+            costoTotal = costoTotal + (p.getCantidad()*p.getPrecio());
+        }
         linearHorizontalUltimo = new LinearLayout(this);
         linearHorizontalUltimo.setLayoutParams(new LinearLayout.LayoutParams(matchParent,wrapContent));
         linearHorizontalUltimo.setOrientation(LinearLayout.HORIZONTAL);
@@ -122,16 +148,24 @@ public class ProductoActividad extends AppCompatActivity {
         txtTotal.setText(" "+precio1);
         txtTotal.setLayoutParams(new LinearLayout.LayoutParams(150,wrapContent));
 
-        Button btnVerCarrito = new Button(this);
-        btnVerCarrito.setText("Ver Carrito");
-        btnVerCarrito.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
+        Button btnPagar = new Button(this);
+        btnPagar.setText("PAGAR");
+        btnPagar.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
 
         linearHorizontalUltimo.addView(txtTotal);
-        linearHorizontalUltimo.addView(btnVerCarrito);
+        linearHorizontalUltimo.addView(btnPagar);
         //linearHorizontal.addView(linearHorizontalUltimo);
         linearPadre.addView(linearHorizontalUltimo);
         //linearProductos.addView(linearHorizontal);
 
+        btnPagar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DialogoDeConfirmacion ddc = new DialogoDeConfirmacion();
+                ddc.show(getFragmentManager(),"DialogDeConfirmacion");
+            }
+        });
     }
 
     private void aumentaProductoEnCarrito(Producto producto){
@@ -144,5 +178,69 @@ public class ProductoActividad extends AppCompatActivity {
         int cantidadActual = producto.getCantidad();
         producto.setCantidad(cantidadActual-1);
         //costoTotal = costoTotal - producto.getPrecio();
+    }
+
+    public Producto consultarProductos (int idCarrito){
+        MyOpenHelper dataBase = new MyOpenHelper(this);
+        SQLiteDatabase db = dataBase.getReadableDatabase();
+
+        Cursor c = dataBase.leerProductos(db);
+
+        Toast.makeText(getApplicationContext(), "Entra al cursor"+c.getCount(), Toast.LENGTH_SHORT).show();
+
+        Producto p = null;
+        while (c.moveToNext()){
+            @SuppressLint("Range") int id = c.getInt(c.getColumnIndex("id"));
+            @SuppressLint("Range") String nombre = c.getString(c.getColumnIndex("nombre"));
+            @SuppressLint("Range") int precio = c.getInt(c.getColumnIndex("precio"));
+            @SuppressLint("Range") int imagen = c.getInt(c.getColumnIndex("imagen"));
+            @SuppressLint("Range") int cantidad = c.getInt(c.getColumnIndex("cantidad"));
+
+            Log.e("TAG_ERROR", "Mensaje G6: " + "consultarProductos en ProductoActividad..."+"id="+id);
+            Log.e("TAG_ERROR", "Mensaje G6: " + "Producto cantidad..."+"cantidad="+cantidad);
+            if (id==idCarrito){
+                p = new Producto(id, nombre, precio, imagen);
+                Log.e("TAG_ERROR", "Mensaje G6: " + "Producto adicionado..."+"cantidad="+cantidad);
+            }
+
+        }
+        return p;
+    }
+
+    private class MyActionDeshacer implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getApplicationContext(), "Se han revertido los cambios", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static class DialogoDeConfirmacion extends DialogFragment {
+        ProductoActividad p = new ProductoActividad();
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Costo total a PAGAR..."+p.getCostoTotal())
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Toast.makeText(getActivity(), "Será enviado a la página de PAGO", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Toast.makeText(getActivity(), "Ha cancelado la operación de PAGO", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
+    }
+
+    public int getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(int costoTotal) {
+        this.costoTotal = costoTotal;
     }
 }

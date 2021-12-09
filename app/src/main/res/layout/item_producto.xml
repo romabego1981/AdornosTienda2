@@ -45,6 +45,13 @@
                 />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnFavorito"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:text="Favorito"
+            />
+
 
     </LinearLayout>
 

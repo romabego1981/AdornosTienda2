@@ -9,6 +9,9 @@
         android:id="@+id/opcComprarProductos"
         android:title="Comprar Productos" />
     <item
+        android:id="@+id/opcFavoritos"
+        android:title="Favoritos" />
+    <item
         android:id="@+id/opcServicios"
         android:title="Servicios" />
     <item

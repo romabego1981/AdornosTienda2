@@ -34,6 +34,9 @@
             android:name=".Principal"
             android:exported="false" />
         <activity
+            android:name=".ProductosFavoritos"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

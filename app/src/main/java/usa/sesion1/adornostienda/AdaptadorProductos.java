@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,6 +47,7 @@ public class AdaptadorProductos extends BaseAdapter {
         ImageView imagen = (ImageView) vista.findViewById(R.id.imvImagen);
         TextView tvwNombre = (TextView) vista.findViewById(R.id.tvwNombre);
         TextView tvwPrecio = (TextView) vista.findViewById(R.id.tvwPrecio);
+        Button btnFavorito = (Button) vista.findViewById(R.id.btnFavorito);
 
         tvwNombre.setText(productos.get(posicion).getNombre());
         tvwPrecio.setText("" +productos.get(posicion).getPrecio());

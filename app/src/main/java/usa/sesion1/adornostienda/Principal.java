@@ -80,7 +80,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         opcContacto = (MenuItem)findViewById(R.id.opcContacto);
         opcContacto = (MenuItem)findViewById(R.id.opcRegUser);
         Toast.makeText(getApplicationContext(),"Creado menu opcComprarProductos",Toast.LENGTH_LONG).show();
-        mDialog = new SpotsDialog.Builder().setContext(Principal.this).setMessage(R.string.msg_espere).build();
+        //mDialog = new SpotsDialog.Builder().setContext(Principal.this).setMessage(R.string.msg_espere).build();
     }
 
     /**
@@ -126,6 +126,11 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             Intent pantallaCompraProductos = new Intent(this, Productos.class);
             startActivity(pantallaCompraProductos);
         }
+        if (id == R.id.opcFavoritos){
+            Toast.makeText(getApplicationContext(),"Ingresa a favoritos",Toast.LENGTH_LONG).show();
+            Intent pantallaFavoritos = new Intent(this, ProductosFavoritos.class);
+            startActivity(pantallaFavoritos);
+        }
         if (id == R.id.opcContacto){
             Toast.makeText(getApplicationContext(),R.string.ingresarContact,Toast.LENGTH_LONG).show();
             Intent pantallaContacto = new Intent(this, Contacto.class);
@@ -153,7 +158,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             @Override
             public void run() {
                 //Do something after 3000ms
-                mDialog.hide();
+                //mDialog.hide();
             }
         }, 3000);
     }
@@ -161,6 +166,6 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onStart() {
         super.onStart();
-        mDialog.show();
+        //mDialog.show();
     }
 } //Fin de la clase

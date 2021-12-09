@@ -7,6 +7,7 @@ public class Producto {
     private int precio;
     private int imagen;
     private int cantidad;
+    private boolean favorito;
 
     public Producto(int id, String nombre, int precio, int imagen) {
         this.id = id;
@@ -14,6 +15,7 @@ public class Producto {
         this.precio = precio;
         this.imagen = imagen;
         this.cantidad = 1;
+        this.favorito = false;
     }
 
     public Producto(String nombre, int precio, int imagen) {
@@ -21,6 +23,7 @@ public class Producto {
         this.precio = precio;
         this.imagen = imagen;
         this.cantidad = 1;
+        this.favorito = false;
     }
 
     public int getId() {
@@ -62,4 +65,8 @@ public class Producto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public boolean isFavorito() { return favorito; }
+
+    public void setFavorito(boolean favorito) { this.favorito = favorito; }
 }
