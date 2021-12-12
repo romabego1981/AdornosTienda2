@@ -10,4 +10,5 @@
     <string name="ingresarServ">Ingresa a Servicios...</string>
     <string name="ingresarUser">Ingresa a Registrar Usuario...</string>
     <string name="ingresarOnresume">Ingresa a onResume()</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

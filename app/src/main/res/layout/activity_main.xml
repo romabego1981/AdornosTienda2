@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@drawable/fondoapp3" > <!--- Esta linea agrega un fondo a la app
+    android:background="@drawable/fondoapp" > <!--- Esta linea agrega un fondo a la app
                                                 al momento del Splash -->
     <ImageView
         android:id="@+id/imgLogo"
