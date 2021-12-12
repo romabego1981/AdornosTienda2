@@ -23,6 +23,7 @@ import android.widget.Toast;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class ProductoActividad extends AppCompatActivity {
 
     LinearLayout linearPadre;

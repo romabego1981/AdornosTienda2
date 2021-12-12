@@ -22,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import java.util.Timer;
 
 import dmax.dialog.SpotsDialog;
 
@@ -41,6 +40,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     private MenuItem opcComprarProductos; //VAriable para contener el boton
     private MenuItem opcServicios; //VAriable para contener el boton
     private MenuItem opcContacto; //VAriable para contener el boton
+    private MenuItem opcSedes;
 
     AlertDialog mDialog;
     /**
@@ -79,6 +79,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         opcServicios = (MenuItem)findViewById(R.id.opcServicios);
         opcContacto = (MenuItem)findViewById(R.id.opcContacto);
         opcContacto = (MenuItem)findViewById(R.id.opcRegUser);
+        opcSedes =(MenuItem)findViewById(R.id.opcSedes);
         Toast.makeText(getApplicationContext(),"Creado menu opcComprarProductos",Toast.LENGTH_LONG).show();
         //mDialog = new SpotsDialog.Builder().setContext(Principal.this).setMessage(R.string.msg_espere).build();
     }
@@ -145,6 +146,11 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             Toast.makeText(getApplicationContext(),R.string.ingresarUser,Toast.LENGTH_LONG).show();
             Intent pantallaRegUser = new Intent(this, RegistroUsuario.class);
             startActivity(pantallaRegUser);
+        }
+        if (id == R.id.opcSedes){
+            Toast.makeText(getApplicationContext(), "Ingresa a Sedes", Toast.LENGTH_LONG).show();
+            Intent pantallaSedes = new Intent(this, MapsActivity.class);
+            startActivity(pantallaSedes);
         }
         return super.onOptionsItemSelected(item);
     }
