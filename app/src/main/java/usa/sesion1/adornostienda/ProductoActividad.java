@@ -29,7 +29,7 @@ public class ProductoActividad extends AppCompatActivity {
     LinearLayout linearHorizontal;
     LinearLayout linearVerticalInterno;
     LinearLayout linearHorizontalUltimo;
-    int costoTotal;
+    private int costoTotal = 0;
     int aux1;
     int aux2;
     String cant1;
@@ -44,18 +44,22 @@ public class ProductoActividad extends AppCompatActivity {
         int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
         int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
         linearPadre = findViewById(R.id.listacarrito);
-        int costoTotal;
+        //int costoTotal = 0;
 
         ArrayList<Producto> carritoDeCompras = new ArrayList<>();// = consultarProductos(getApplicationContext());
         int cantRecibida = getIntent().getExtras().getInt("cantProd");
-        //Log.e("TAG_ERROR", "Mensaje G6: " + "carritoDeCompras..."+carritoDeCompras.size());
-        Log.e("TAG_ERROR", "Mensaje G6: " + "cantidadRecibida..."+cantRecibida);
+        //Log.e("TAG_G6", "Mensaje G6: " + "carritoDeCompras..."+carritoDeCompras.size());
+        Log.e("TAG_G6", "Mensaje G6: " + "cantidadRecibida..."+cantRecibida);
         //int n = cantRecibida.getIntExtra("cantProd",0);
+        int[] id = new int[cantRecibida],cant = new int[cantRecibida];
         for(int i=0; i<cantRecibida; i++){
-            int id = getIntent().getExtras().getInt("id"+i);
-            int cant = getIntent().getExtras().getInt("cantidad"+i);
-            Log.e("TAG_ERROR", "id"+i + "--" + "cantidad"+i);
-            carritoDeCompras.add(consultarProductos(id));
+            id[i] = getIntent().getExtras().getInt("id"+i);
+            cant[i] = getIntent().getExtras().getInt("cantidad"+i);
+            Log.e("TAG_G6", "id"+i+"="+id[i] + "--" + "cantidad"+i+"="+cant[i]);
+
+            //Toast.makeText(getApplicationContext(), "Antes de entrar consultarProducto-idCarrito -- id="+id, Toast.LENGTH_SHORT).show();
+            carritoDeCompras.add(consultarProductos(id[i],cant[i]));
+            //Log.e("TAG_G6 carrito= ", carritoDeCompras.="+id[i] + "--" + "cantidad"+i+"="+cant[i]);
         }
         //ArrayList<Producto> carritoDeCompras = (ArrayList<Producto>)carritoRecibido.getSerializableExtra("carrito");
         //Toast.makeText(getApplicationContext(),"Cantidad de productos en el Carrito --> "+carritoDeCompras.size(),Toast.LENGTH_LONG).show();
@@ -92,7 +96,7 @@ public class ProductoActividad extends AppCompatActivity {
                 precio1=txtPrecio.getText().toString();
                 //aux1 = Integer.parseInt(cant1);
                 //aux2 = Integer.decode(txtPrecio.getText().toString());
-                costoTotal = costoTotal + (Integer.parseInt(txtCant.getText().toString())*Integer.parseInt(txtPrecio.getText().toString()));
+                costoTotal = costoTotal + (Integer.parseInt(txtCant.getText().toString().trim())*Integer.parseInt(txtPrecio.getText().toString().trim()));
                 precio1=" "+costoTotal;
                 //costoTotal = Integer.parseInt(cant1);
             }catch (Exception e){
@@ -136,10 +140,6 @@ public class ProductoActividad extends AppCompatActivity {
             });
         }
 
-        for (Producto p: carritoDeCompras){
-            Toast.makeText(getApplicationContext(), "Entra al for a calcular el COSTOTOTAL", Toast.LENGTH_LONG).show();
-            costoTotal = costoTotal + (p.getCantidad()*p.getPrecio());
-        }
         linearHorizontalUltimo = new LinearLayout(this);
         linearHorizontalUltimo.setLayoutParams(new LinearLayout.LayoutParams(matchParent,wrapContent));
         linearHorizontalUltimo.setOrientation(LinearLayout.HORIZONTAL);
@@ -162,6 +162,13 @@ public class ProductoActividad extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                for (Producto p: carritoDeCompras){
+                    Toast.makeText(getApplicationContext(), "Entra al for a calcular el COSTOTOTAL", Toast.LENGTH_LONG).show();
+                    costoTotal = costoTotal + (p.getCantidad()*p.getPrecio());
+                    String msg = "cantidad=" + p.getCantidad() + "precio="+p.getPrecio();
+                    Log.e("COSTOTOTAL=",msg);
+                }
+
                 DialogoDeConfirmacion ddc = new DialogoDeConfirmacion();
                 ddc.show(getFragmentManager(),"DialogDeConfirmacion");
             }
@@ -180,13 +187,16 @@ public class ProductoActividad extends AppCompatActivity {
         //costoTotal = costoTotal - producto.getPrecio();
     }
 
-    public Producto consultarProductos (int idCarrito){
+    public Producto consultarProductos (int idCarrito,int cant){
         MyOpenHelper dataBase = new MyOpenHelper(this);
         SQLiteDatabase db = dataBase.getReadableDatabase();
 
         Cursor c = dataBase.leerProductos(db);
-
-        Toast.makeText(getApplicationContext(), "Entra al cursor"+c.getCount(), Toast.LENGTH_SHORT).show();
+        Log.e("TAG_G6", "Mensaje G6: " + "consultarProductos en ProductoActividad..."+c.getCount());
+        for (int i=0;i<c.getColumnCount();i++){
+            Log.e("TAG_G6", "Mensaje G6: " + "consultarProductos en ProductoActividad..."+c.getColumnName(i));
+        }
+        Toast.makeText(getApplicationContext(), "Entra al consultarProducto-idCarrito -- cursor"+c.getCount(), Toast.LENGTH_SHORT).show();
 
         Producto p = null;
         while (c.moveToNext()){
@@ -197,10 +207,10 @@ public class ProductoActividad extends AppCompatActivity {
             @SuppressLint("Range") int cantidad = c.getInt(c.getColumnIndex("cantidad"));
 
             Log.e("TAG_ERROR", "Mensaje G6: " + "consultarProductos en ProductoActividad..."+"id="+id);
-            Log.e("TAG_ERROR", "Mensaje G6: " + "Producto cantidad..."+"cantidad="+cantidad);
+            //Log.e("TAG_ERROR", "Mensaje G6: " + "Producto cantidad..."+"cantidad="+cantidad);
             if (id==idCarrito){
-                p = new Producto(id, nombre, precio, imagen);
-                Log.e("TAG_ERROR", "Mensaje G6: " + "Producto adicionado..."+"cantidad="+cantidad);
+                p = new Producto(id, nombre, precio, imagen, cant);
+                Log.e("TAG_ERROR", "Mensaje G6: " + "Producto adicionado...id="+p.getId()+"cantidad="+p.getCantidad());
             }
 
         }

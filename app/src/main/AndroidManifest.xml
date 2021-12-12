@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="usa.sesion1.adornostienda">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon_adorno"
@@ -22,6 +32,9 @@
             android:name=".Servicios"
             android:exported="false" />
         <activity
+            android:name=".SucursalesActivity"
+            android:exported="false" />
+        <activity
             android:name=".GestionaProductos"
             android:exported="false" />
         <activity
@@ -31,10 +44,13 @@
             android:name=".Productos"
             android:exported="false" />
         <activity
+            android:name=".CatalogoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Principal"
             android:exported="false" />
         <activity
-            android:name=".ProductosFavoritos"
+            android:name=".FavoritoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

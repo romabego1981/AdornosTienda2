@@ -43,14 +43,18 @@
                 android:textSize="14dp"
                 android:textStyle="italic"
                 />
-        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnFavorito"
-            android:layout_width="110dp"
-            android:layout_height="60dp"
-            android:text="Favorito"
-            />
+            <TextView
+                android:id="@+id/tvwFavorito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FAVORITO"
+                android:textColor="#000000"
+                android:textSize="14dp"
+                android:textStyle="italic"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>

@@ -28,16 +28,22 @@
         <entry key="..\:/Users/VV17/AndroidStudioProjects/AdornosTienda-master/app/src/main/res/layout/activity_servicios.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/VV17/AndroidStudioProjects/AdornosTienda-master/app/src/main/res/menu/menuprincipal.xml" value="0.1" />
         <entry key="..\:/Users/VV17/AndroidStudioProjects/AdornosTienda-master/app/src/main/res/menu/menuproductos.xml" value="1.832142857142857" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_catalogo.xml" value="0.245018115942029" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_contacto.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_detalle_producto.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_favorito.xml" value="0.245018115942029" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_gestionar_productos.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_main.xml" value="0.13272543059777103" />
-        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_principal.xml" value="0.25905797101449274" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_principal.xml" value="0.1" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_producto_actividad.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_productos.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_productos_favoritos.xml" value="0.25905797101449274" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_registro_usuario.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_servicios.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/activity_sucursales.xml" value="0.245018115942029" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/item_imagen.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/item_producto.xml" value="0.25905797101449274" />
+        <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/layout/item_sucursal.xml" value="0.245018115942029" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/menu/menuprincipal.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/VV17/Documents/GitHub/AdornosTienda2.git/app/src/main/res/menu/menuproductos.xml" value="0.14270833333333333" />
       </map>

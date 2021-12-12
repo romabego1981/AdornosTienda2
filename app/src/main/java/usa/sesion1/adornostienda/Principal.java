@@ -2,6 +2,7 @@
  *
  * @author Grupo6
  * @description Este módulo se creó para manejar el backen de la App de adornos en su pantalla principal
+ *
  */
 package usa.sesion1.adornostienda;
 
@@ -24,7 +25,8 @@ import android.widget.Toast;
 
 //import java.util.Timer;
 
-import dmax.dialog.SpotsDialog;
+//import dmax.dialog.SpotsDialog;
+import  android.app.AlertDialog;
 
 /**
  *
@@ -39,8 +41,12 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     private TextView txtIngreso; //VAriable para contener el boton
     private MenuItem opcGestionarProductos; //VAriable para contener el boton
     private MenuItem opcComprarProductos; //VAriable para contener el boton
+    private MenuItem opcCatalogo; //VAriable para contener el boton
+    private MenuItem opcFavoritos; //VAriable para contener el boton
+    private MenuItem opcSucursales; //VAriable para contener el boton
     private MenuItem opcServicios; //VAriable para contener el boton
     private MenuItem opcContacto; //VAriable para contener el boton
+    private MenuItem opcRegUser; //VAriable para contener el boton
 
     AlertDialog mDialog;
     /**
@@ -76,9 +82,12 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
         opcGestionarProductos = (MenuItem)findViewById(R.id.opcGestionarProductos);
         opcComprarProductos = (MenuItem)findViewById(R.id.opcComprarProductos);
+        opcCatalogo = (MenuItem)findViewById(R.id.opcCatalogo);
+        opcFavoritos = (MenuItem)findViewById(R.id.opcFavoritos);
+        opcSucursales = (MenuItem)findViewById(R.id.opcSucursales);
         opcServicios = (MenuItem)findViewById(R.id.opcServicios);
         opcContacto = (MenuItem)findViewById(R.id.opcContacto);
-        opcContacto = (MenuItem)findViewById(R.id.opcRegUser);
+        opcRegUser = (MenuItem)findViewById(R.id.opcRegUser);
         Toast.makeText(getApplicationContext(),"Creado menu opcComprarProductos",Toast.LENGTH_LONG).show();
         //mDialog = new SpotsDialog.Builder().setContext(Principal.this).setMessage(R.string.msg_espere).build();
     }
@@ -126,20 +135,30 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             Intent pantallaCompraProductos = new Intent(this, Productos.class);
             startActivity(pantallaCompraProductos);
         }
+        if (id == R.id.opcCatalogo){
+            Toast.makeText(getApplicationContext(),"Ingresa a Catálogo",Toast.LENGTH_LONG).show();
+            Intent pantallaCatalogo = new Intent(this, CatalogoActivity.class);
+            startActivity(pantallaCatalogo);
+        }
         if (id == R.id.opcFavoritos){
             Toast.makeText(getApplicationContext(),"Ingresa a favoritos",Toast.LENGTH_LONG).show();
-            Intent pantallaFavoritos = new Intent(this, ProductosFavoritos.class);
+            Intent pantallaFavoritos = new Intent(this, FavoritoActivity.class);
             startActivity(pantallaFavoritos);
         }
-        if (id == R.id.opcContacto){
-            Toast.makeText(getApplicationContext(),R.string.ingresarContact,Toast.LENGTH_LONG).show();
-            Intent pantallaContacto = new Intent(this, Contacto.class);
-            startActivity(pantallaContacto);
+        if (id == R.id.opcSucursales){
+            Toast.makeText(getApplicationContext(),"Igresa a sucursales",Toast.LENGTH_LONG).show();
+            Intent pantallaSucursales = new Intent(this, SucursalesActivity.class);
+            startActivity(pantallaSucursales);
         }
         if (id == R.id.opcServicios){
             Toast.makeText(getApplicationContext(),R.string.ingresarServ,Toast.LENGTH_LONG).show();
             Intent pantallaServicios = new Intent(this, Servicios.class);
             startActivity(pantallaServicios);
+        }
+        if (id == R.id.opcContacto){
+            Toast.makeText(getApplicationContext(),R.string.ingresarContact,Toast.LENGTH_LONG).show();
+            Intent pantallaContacto = new Intent(this, Contacto.class);
+            startActivity(pantallaContacto);
         }
         if (id == R.id.opcRegUser){
             Toast.makeText(getApplicationContext(),R.string.ingresarUser,Toast.LENGTH_LONG).show();

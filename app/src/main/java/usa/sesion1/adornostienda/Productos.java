@@ -92,11 +92,13 @@ public class Productos extends AppCompatActivity implements Serializable {
                     if(!buscarProducto(carrito,producto)){
                         carrito.add(producto);
                         String msg="Se añadió el producto " + producto.getNombre();
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                        Log.e("TAG-G6",msg);
+                        //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     }else{
                         aumentarProductoEnCarrito(carrito,producto);
                         String msg="Se agregó uno mas del producto " + producto.getNombre();
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                        Log.e("TAG-G6",msg);
+                        //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -117,15 +119,20 @@ public class Productos extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"Ingresa a Ver Carrito..."+carrito.size(),Toast.LENGTH_LONG).show();
-                Log.e("TAG_ERROR", "Mensaje G6: " + "Ingresa a Ver Carrito..."+carrito.size());
+                Log.e("TAG_G6", "Mensaje G6: " + "Ingresa a Ver Carrito..."+carrito.size());
                 try {
                     pantallaCarrito = new Intent(getApplicationContext(), ProductoActividad.class);
                     //pantallaCarrito.putExtra("carrito",carrito);
-                    pantallaCarrito.putExtra("cantProd",carrito.size());
+                    pantallaCarrito.putExtra("cantProd", carrito.size());
+                    int tempId,tempCant = 0;
                     for(int i=0; i<carrito.size(); i++){
-                        pantallaCarrito.putExtra("id"+i,carrito.get(i).getId());
-                        pantallaCarrito.putExtra("cantidad"+i,carrito.get(i).getCantidad());
+                        pantallaCarrito.putExtra("id"+i, carrito.get(i).getId());
+                        pantallaCarrito.putExtra("cantidad"+i, carrito.get(i).getCantidad());
+                        tempId = carrito.get(i).getId();
+                        tempCant = carrito.get(i).getCantidad();
+                        Log.e("TAG-G6","Enviado: "+"id"+i+"="+tempId + "--" + "cantidad"+i+"="+tempCant);
                     }
+                    Log.e("TAG-G6","Cantidad enviada..."+carrito.size());
                     startActivity(pantallaCarrito);
                 }catch (Exception e){
                     Log.e("TAG_ERROR", "Error EX: " + e.getMessage());
@@ -150,7 +157,7 @@ public class Productos extends AppCompatActivity implements Serializable {
         for(int i=0; i<carrito.size(); i++){
             int cantidadActual = carrito.get(i).getCantidad();
             carrito.get(i).setCantidad(cantidadActual+1);
-            Log.e("TAG_ERROR", "Mensaje G6: " + "Cantidad adicionada..."+carrito.get(i).getCantidad());
+            Log.e("TAG_G6", "Mensaje G6: " + "Cantidad producto..."+carrito.get(i).getCantidad());
         }
     }
 
@@ -169,9 +176,9 @@ public class Productos extends AppCompatActivity implements Serializable {
             @SuppressLint("Range") String nombre = c.getString(c.getColumnIndex("nombre"));
             @SuppressLint("Range") int precio = c.getInt(c.getColumnIndex("precio"));
             @SuppressLint("Range") int imagen = c.getInt(c.getColumnIndex("imagen"));
-            //@SuppressLint("Range") int cantidad = c.getInt(c.getColumnIndex("cantidad"));
+            @SuppressLint("Range") int cantidad = c.getInt(c.getColumnIndex("cantidad"));
 
-            productos.add(new Producto(id, nombre, precio, imagen));
+            productos.add(new Producto(id, nombre, precio, imagen, cantidad));
         }
         return productos;
     }

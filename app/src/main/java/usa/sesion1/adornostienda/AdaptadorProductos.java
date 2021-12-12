@@ -1,6 +1,7 @@
 package usa.sesion1.adornostienda;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,13 +48,15 @@ public class AdaptadorProductos extends BaseAdapter {
         ImageView imagen = (ImageView) vista.findViewById(R.id.imvImagen);
         TextView tvwNombre = (TextView) vista.findViewById(R.id.tvwNombre);
         TextView tvwPrecio = (TextView) vista.findViewById(R.id.tvwPrecio);
-        Button btnFavorito = (Button) vista.findViewById(R.id.btnFavorito);
+        TextView tvwFavorito = (TextView) vista.findViewById(R.id.tvwFavorito);
 
         tvwNombre.setText(productos.get(posicion).getNombre());
         tvwPrecio.setText("" +productos.get(posicion).getPrecio());
+        tvwFavorito.setText("" +productos.get(posicion).isFavorito());
         imagen.setImageResource(productos.get(posicion).getImagen());
 
         return vista;
     }
+
 }
 

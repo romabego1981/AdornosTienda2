@@ -26,6 +26,55 @@ public class Producto {
         this.favorito = false;
     }
 
+    public Producto(int id, String nombre, int precio, int imagen, boolean favorito) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.cantidad = 1;
+        this.favorito = favorito;
+    }
+
+    public Producto(String nombre, int precio, int imagen, boolean favorito) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.cantidad = 1;
+        this.favorito = favorito;
+    }
+    public Producto(int id, String nombre, int precio, int imagen, int cantidad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.cantidad = cantidad;
+        this.favorito = false;
+    }
+
+    public Producto(String nombre, int precio, int imagen, int cantidad) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.cantidad = cantidad;
+        this.favorito = false;
+    }
+
+    public Producto(String nombre, int precio, int imagen, int cantidad, boolean favorito) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.cantidad = cantidad;
+        this.favorito = favorito;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
     public int getId() {
         return id;
     }
@@ -66,7 +115,5 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public boolean isFavorito() { return favorito; }
 
-    public void setFavorito(boolean favorito) { this.favorito = favorito; }
 }
