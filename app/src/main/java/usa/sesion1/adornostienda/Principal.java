@@ -147,7 +147,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         }
         if (id == R.id.opcSucursales){
             Toast.makeText(getApplicationContext(),"Igresa a sucursales",Toast.LENGTH_LONG).show();
-            Intent pantallaSucursales = new Intent(this, SucursalesActivity.class);
+            Intent pantallaSucursales = new Intent(this, MapsActivity.class);
             startActivity(pantallaSucursales);
         }
         if (id == R.id.opcServicios){

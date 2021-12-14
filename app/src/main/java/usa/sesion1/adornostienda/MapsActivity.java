@@ -52,7 +52,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL); //Seleccionamos el tipo de mapa como Hibrido
         mMap.setMaxZoomPreference(20);//Establecemos el máximo rango del Zoom
 
