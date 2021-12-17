@@ -21,8 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="0.2dp"
-            android:layout_marginBottom="0.2dp">
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="10dp">
 
             <ImageView
                 android:id="@+id/imgServicioBisuteria"
@@ -59,8 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="0.2dp"
-            android:layout_marginBottom="0.2dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="10dp">
 
             <ImageView
                 android:id="@+id/imgServicioArbol"
@@ -96,8 +98,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="0.2dp"
-            android:layout_marginBottom="0.2dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="10dp">
 
             <ImageView
                 android:id="@+id/imgServicioFiestas"
@@ -133,8 +136,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="0.2dp"
-            android:layout_marginBottom="0.2dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="10dp">
 
             <ImageView
                 android:id="@+id/imgServicioQuince"

@@ -62,7 +62,7 @@ public class Productos extends AppCompatActivity implements Serializable {
             linearHorizontal.setLayoutParams(new LinearLayout.LayoutParams(matchParent,wrapContent));
             ImageView imagen = new ImageView(this);
             imagen.setImageResource(producto.getImagen());
-            imagen.setLayoutParams(new LinearLayout.LayoutParams(1,60,1));
+            imagen.setLayoutParams(new LinearLayout.LayoutParams(1,150,1));
             linearVerticalInterno = new LinearLayout(this);
             linearVerticalInterno.setLayoutParams(new LinearLayout.LayoutParams(0,wrapContent,1));
             linearVerticalInterno.setOrientation(LinearLayout.VERTICAL);
@@ -80,6 +80,7 @@ public class Productos extends AppCompatActivity implements Serializable {
             Button btnAnadir = new Button(this);
             btnAnadir.setText("Añadir");
             btnAnadir.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
+            btnAnadir.setBackgroundResource(R.drawable.boton_redondo);
             linearHorizontal.addView(imagen);
             linearHorizontal.addView(linearVerticalInterno);
             linearHorizontal.addView(btnAnadir);
@@ -111,6 +112,7 @@ public class Productos extends AppCompatActivity implements Serializable {
         Button btnVerCarrito = new Button(this);
         btnVerCarrito.setText("Ver Carrito");
         btnVerCarrito.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
+        btnVerCarrito.setBackgroundResource(R.drawable.boton_redondo);
         linearHorizontalUltimo.addView(btnVerCarrito);
         //linearHorizontal.addView(linearHorizontalUltimo);
         linearProductos.addView(linearHorizontalUltimo);

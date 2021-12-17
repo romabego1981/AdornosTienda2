@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,33 +20,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //import java.util.Timer;
 
 //import dmax.dialog.SpotsDialog;
-import  android.app.AlertDialog;
+
 
 /**
  *
  * @description Clase principal para manipular la pantalla inicial de la app
  */
-public class Principal extends AppCompatActivity implements View.OnClickListener {
+public class Principal extends AppCompatActivity  {
     //Declaración de atributos de la clase
-    private EditText txtUsuario; //VAriable para contener el boton
-    private EditText txtClave; //VAriable para contener el boton
-    private Button btnLogin; //VAriable para contener el boton
-    private ImageView imgIngreso; //VAriable para contener el boton
-    private TextView txtIngreso; //VAriable para contener el boton
-    private MenuItem opcGestionarProductos; //VAriable para contener el boton
+    private EditText etUsuario; //Variable para contener el boton
+    private EditText etClave; //Variable para contener el boton
+    private Button btnLogin; //Variable para contener el boton
+    private ImageView imgIngreso; //Variable para contener el boton
+    private TextView txtIngreso; //Variable para contener el boton
+    private MenuItem opcGestionarProductos; //Variable para contener el boton
     private MenuItem opcComprarProductos; //VAriable para contener el boton
-    private MenuItem opcCatalogo; //VAriable para contener el boton
-    private MenuItem opcFavoritos; //VAriable para contener el boton
-    private MenuItem opcSucursales; //VAriable para contener el boton
-    private MenuItem opcServicios; //VAriable para contener el boton
-    private MenuItem opcContacto; //VAriable para contener el boton
-    private MenuItem opcRegUser; //VAriable para contener el boton
+    private MenuItem opcCatalogo; //Variable para contener el boton
+    private MenuItem opcFavoritos; //Variable para contener el boton
+    private MenuItem opcSucursales; //Variable para contener el boton
+    private MenuItem opcServicios; //Variable para contener el boton
+    private MenuItem opcContacto; //Variable para contener el boton
+    private MenuItem opcRegUser; //Variable para contener el boton
+    private ProgressBar progressBar1; //Variable para contener el ProgressBar
 
     AlertDialog mDialog;
     /**
@@ -64,21 +66,23 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        /*
+        /* MyOpenHelper
         MyOpenHelper dataBase = new MyOpenHelper(this);
         SQLiteDatabase db = dataBase.getWritableDatabase();
         db.delete("productos", null, null);
         */
 
-        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
-        txtClave = (EditText) findViewById(R.id.txtClave);
+        etUsuario = (EditText) findViewById(R.id.etUsuario);
+        etClave = (EditText) findViewById(R.id.etClave);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(this);
+        progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
 
+
+        /* Implementacion para el OnResume el cual se cambiara por el Asynctask del Reto4
         imgIngreso = (ImageView)findViewById(R.id.imgIngreso);
         txtIngreso = (TextView)findViewById(R.id.txtIngreso);
         imgIngreso.setVisibility(View.INVISIBLE);
-        txtIngreso.setVisibility(View.INVISIBLE);
+        txtIngreso.setVisibility(View.INVISIBLE);*/
 
         opcGestionarProductos = (MenuItem)findViewById(R.id.opcGestionarProductos);
         opcComprarProductos = (MenuItem)findViewById(R.id.opcComprarProductos);
@@ -90,20 +94,70 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         opcRegUser = (MenuItem)findViewById(R.id.opcRegUser);
         Toast.makeText(getApplicationContext(),"Creado menu opcComprarProductos",Toast.LENGTH_LONG).show();
         //mDialog = new SpotsDialog.Builder().setContext(Principal.this).setMessage(R.string.msg_espere).build();
+
+        //Asynctask
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Task().execute(etUsuario.getText().toString());
+            }
+        });
     }
+
+    /**
+     * Se implementa clase Task que extiende de Asynctask para:
+     * Inhabilitar el boton del Login
+     * Mostrar un ProgressBar que indique al usuario que se esta ejecutando una operacion
+     * Simular una pausa de 5 segundos
+     * Una vez terminnada esta pausa, mostrar por un Toast la Bienvenida al usuario,
+     * con su respectivo nombre ingresado en el EditText.
+     */
+    class Task extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected void onPreExecute() {
+            Toast.makeText(getApplicationContext(), "Ejecutando AsyncTask",Toast.LENGTH_SHORT).show();
+            progressBar1.setVisibility(View.VISIBLE);
+            btnLogin.setEnabled(false);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return strings[0];
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            String usuario = etUsuario.getText().toString();
+
+            progressBar1.setVisibility(View.INVISIBLE);
+            btnLogin.setEnabled(true);
+
+            Toast.makeText(getApplicationContext(), "Bienvenido \n" + usuario, Toast.LENGTH_LONG).show();
+
+
+        }
+    }
+
+
 
     /**
      *
      * @description Sobreescritura del método onClick para realizar actividades cuando el usuario
      * haga click
      */
-    @Override
+    /*@Override
     public void onClick(View v) {
         Toast.makeText(this, R.string.msg_pessBtn, Toast.LENGTH_LONG).show();
         imgIngreso.setVisibility(View.VISIBLE);
         txtIngreso.setVisibility(View.VISIBLE);
         btnLogin.setText(R.string.regresar);
-    }
+    }*/
 
     /**
      *
@@ -146,7 +200,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             startActivity(pantallaFavoritos);
         }
         if (id == R.id.opcSucursales){
-            Toast.makeText(getApplicationContext(),"Igresa a sucursales",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Ingresa a sucursales",Toast.LENGTH_LONG).show();
             Intent pantallaSucursales = new Intent(this, MapsActivity.class);
             startActivity(pantallaSucursales);
         }
@@ -168,6 +222,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         return super.onOptionsItemSelected(item);
     }
 
+
+    /*El metodo onResume() se cambia con el Asynctask implementado para el reto4
     @Override
     protected void onResume() {
         super.onResume();
@@ -186,5 +242,5 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     protected void onStart() {
         super.onStart();
         //mDialog.show();
-    }
+    }*/
 } //Fin de la clase

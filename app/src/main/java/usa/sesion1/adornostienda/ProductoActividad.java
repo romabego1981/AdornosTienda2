@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,12 @@ public class ProductoActividad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto_actividad);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(R.string.actionBar_Title);
+        getSupportActionBar().setSubtitle(R.string.actionBar_Subtitle);
+        getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
         int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -73,7 +80,7 @@ public class ProductoActividad extends AppCompatActivity {
 
             ImageView imagen = new ImageView(this);
             imagen.setImageResource(p.getImagen());
-            imagen.setLayoutParams(new LinearLayout.LayoutParams(1,60,1));
+            imagen.setLayoutParams(new LinearLayout.LayoutParams(1,150,1));
 
             linearVerticalInterno = new LinearLayout(this);
             linearVerticalInterno.setLayoutParams(new LinearLayout.LayoutParams(0,wrapContent,1));
@@ -109,9 +116,11 @@ public class ProductoActividad extends AppCompatActivity {
             Button btnMas = new Button(this);
             btnMas.setText("+");
             btnMas.setLayoutParams(new LinearLayout.LayoutParams(20,wrapContent,1));
+            btnMas.setBackgroundResource(R.drawable.boton_redondo);
             Button btnMenos = new Button(this);
             btnMenos.setText("-");
             btnMenos.setLayoutParams(new LinearLayout.LayoutParams(20,wrapContent,1));
+            btnMenos.setBackgroundResource(R.drawable.boton_redondo);
 
             linearHorizontal.addView(imagen);
             linearHorizontal.addView(linearVerticalInterno);
@@ -152,6 +161,8 @@ public class ProductoActividad extends AppCompatActivity {
         Button btnPagar = new Button(this);
         btnPagar.setText("PAGAR");
         btnPagar.setLayoutParams(new LinearLayout.LayoutParams(100,wrapContent,1));
+        btnPagar.setBackgroundResource(R.drawable.boton_redondo);
+        ;
 
         linearHorizontalUltimo.addView(txtTotal);
         linearHorizontalUltimo.addView(btnPagar);

@@ -36,6 +36,12 @@ public class GestionaProductos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         linearPadre = (LinearLayout) findViewById(R.id.linearGestionarProductos);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(R.string.actionBar_Title);
+        getSupportActionBar().setSubtitle(R.string.actionBar_Subtitle);
+        getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         setContentView(R.layout.activity_gestionar_productos);
         Toast.makeText(getApplicationContext(),"desde gestiona Productos",Toast.LENGTH_LONG).show();
         edtNombre = (EditText)findViewById(R.id.edtNombre);
