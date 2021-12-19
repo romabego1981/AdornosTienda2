@@ -33,6 +33,12 @@ public class CatalogoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("AppDornos");
+        getSupportActionBar().setSubtitle("Materializamos ideas de diseño");
+        getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         Log.e("TAG-G6","Entra en CatalogoActivity...");
         lvwProductos = (ListView) findViewById(R.id.lvwProductos);
         Log.e("TAG-G6","Antes de crear el listado con el adaptador...");

@@ -15,7 +15,7 @@ public class Contacto extends AppCompatActivity {
         setContentView(R.layout.activity_contacto);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("AppDORNOS");
+        getSupportActionBar().setTitle("AppDornos");
         getSupportActionBar().setSubtitle("Materializamos ideas de diseño");
         getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
         getSupportActionBar().setDisplayUseLogoEnabled(true);

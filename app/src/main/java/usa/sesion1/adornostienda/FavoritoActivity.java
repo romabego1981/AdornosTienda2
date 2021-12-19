@@ -38,6 +38,12 @@ public class FavoritoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorito);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("AppDornos");
+        getSupportActionBar().setSubtitle("Materializamos ideas de diseño");
+        getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         Log.e("TAG-G6","Entra a FAvoritoActivity......... ");
         lvwFavoritos = (ListView) findViewById(R.id.lvwProductosFavoritos);
 
