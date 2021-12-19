@@ -24,9 +24,6 @@
         android:id="@+id/opcContacto"
         android:title="Contacto" />
     <item
-        android:id="@+id/opcSedes"
-        android:title="Sedes" /> //Visualiza las sedes de la empresa
-    <item
         android:id="@+id/opcRegUser"
         android:title="Registro Usuario" />
 </menu>
