@@ -1,7 +1,7 @@
 /**
  *
  * @author Grupo6
- * @description Este módulo se creó para manejar el backen de la App de adornos en su pantalla principal
+ * @description Este módulo se creó para manejar el backend de la App de adornos en su pantalla principal
  *
  */
 package usa.sesion1.adornostienda;

@@ -49,6 +49,10 @@
         <activity
             android:name=".Contacto"
             android:exported="false" />
+        <activity android:name=".CatalogoActivity"
+            android:exported="false"/>
+        <activity android:name=".FavoritoActivity"
+            android:exported="false"/>
         <activity
             android:name=".Servicios"
             android:exported="false" />
