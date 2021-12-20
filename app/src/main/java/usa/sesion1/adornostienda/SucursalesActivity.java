@@ -125,7 +125,7 @@ public class SucursalesActivity extends AppCompatActivity {
             GeoPoint sucursalSeleccionada = new GeoPoint(sucursal.getLatitud(), sucursal.getLongitud());
             Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
 
-            myOpenMap = (MapView) findViewById(R.id.map);
+            myOpenMap = (MapView) findViewById(R.id.mapa);
             myOpenMap.setBuiltInZoomControls(true);
             myMapController = (MapController) myOpenMap.getController();
             myMapController.setCenter(sucursalSeleccionada);
