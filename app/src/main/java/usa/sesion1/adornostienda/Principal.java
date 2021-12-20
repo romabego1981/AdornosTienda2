@@ -48,6 +48,7 @@ public class Principal extends AppCompatActivity  {
     private MenuItem opcServicios; //Variable para contener el boton
     private MenuItem opcContacto; //Variable para contener el boton
     private MenuItem opcRegUser; //Variable para contener el boton
+    private MenuItem opcAdministrarSucursales;
     private ProgressBar progressBar1; //Variable para contener el ProgressBar
 
     AlertDialog mDialog;
@@ -92,6 +93,7 @@ public class Principal extends AppCompatActivity  {
         opcServicios = (MenuItem)findViewById(R.id.opcServicios);
         opcContacto = (MenuItem)findViewById(R.id.opcContacto);
         opcRegUser = (MenuItem)findViewById(R.id.opcRegUser);
+        opcAdministrarSucursales = (MenuItem)findViewById(R.id.opcAdministrarSucursales);
         Toast.makeText(getApplicationContext(),"Creado menu opcComprarProductos",Toast.LENGTH_LONG).show();
         //mDialog = new SpotsDialog.Builder().setContext(Principal.this).setMessage(R.string.msg_espere).build();
 
@@ -218,6 +220,11 @@ public class Principal extends AppCompatActivity  {
             Toast.makeText(getApplicationContext(),R.string.ingresarUser,Toast.LENGTH_LONG).show();
             Intent pantallaRegUser = new Intent(this, RegistroUsuario.class);
             startActivity(pantallaRegUser);
+        }
+        if (id == R.id.opcAdministrarSucursales){
+            Toast.makeText(getApplicationContext(),"Ingresa administrar Sucursales",Toast.LENGTH_LONG).show();
+            Intent pantallaAdSucursal = new Intent(this, SucursalesActivityMain.class);
+            startActivity(pantallaAdSucursal);
         }
         return super.onOptionsItemSelected(item);
     }

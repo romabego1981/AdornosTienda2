@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="usa.sesion1.adornostienda">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -10,11 +9,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    //Importacion para solucionar problema de ubicacion y desplazamiento hasta la sede
     <queries>
         <package android:name="com.google.android.apps.maps" />
     </queries>
-
 
     <application
         android:allowBackup="true"
@@ -23,7 +20,9 @@
         android:roundIcon="@mipmap/ic_icon_adorno_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdornosTienda">
-
+        <activity
+            android:name=".SucursalesActivityMain"
+            android:exported="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,10 +48,12 @@
         <activity
             android:name=".Contacto"
             android:exported="false" />
-        <activity android:name=".CatalogoActivity"
-            android:exported="false"/>
-        <activity android:name=".FavoritoActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".CatalogoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FavoritoActivity"
+            android:exported="false" />
         <activity
             android:name=".Servicios"
             android:exported="false" />
@@ -71,6 +72,9 @@
         <activity
             android:name=".ProductosFavoritos"
             android:exported="false" />
+
+        <activity android:name=".vista.SucursalActivity"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

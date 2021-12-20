@@ -18,6 +18,9 @@
         android:id="@+id/opcSucursales"
         android:title="Sucursales" />
     <item
+        android:id="@+id/opcAdministrarSucursales"
+        android:title="Administrar Sucursales" />
+    <item
         android:id="@+id/opcServicios"
         android:title="Servicios" />
     <item
