@@ -201,7 +201,7 @@ public class Principal extends AppCompatActivity  {
         }
         if (id == R.id.opcSucursales){
             Toast.makeText(getApplicationContext(),"Ingresa a sucursales",Toast.LENGTH_LONG).show();
-            Intent pantallaSucursales = new Intent(this, MapsActivity.class);
+            Intent pantallaSucursales = new Intent(this, SucursalesActivity.class);
             startActivity(pantallaSucursales);
         }
         if (id == R.id.opcServicios){
