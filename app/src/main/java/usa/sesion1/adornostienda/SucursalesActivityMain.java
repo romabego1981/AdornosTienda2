@@ -41,7 +41,13 @@ public class SucursalesActivityMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sucursales_main);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("AppDornos");
+        getSupportActionBar().setSubtitle("Materializamos ideas de diseño");
+        getSupportActionBar().setLogo(R.mipmap.ic_icon_adorno);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         btnNuevo = (Button)findViewById(R.id.btnNuevo);
 

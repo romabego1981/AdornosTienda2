@@ -5,17 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
     tools:context=".SucursalesActivityMain">
 
     <Button
         android:id="@+id/btnNuevo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/boton_redondo"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:text="Nueva sucursal"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvSucursales"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
